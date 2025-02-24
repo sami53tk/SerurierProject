@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرحبًا بكم في موقعنا</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+    <div style="max-width: 600px; margin: auto; padding: 20px; text-align: center;">
+        <h1 style="color: #4CAF50;">مرحبًا بكم في موقعنا، {{ username }}!</h1>
+        <p style="font-size: 16px;">نحن مسرورون بوجودكم معنا. تم تسجيل تسجيلكم بنجاح في تاريخ {{ date }}.</p>
+        <p style="font-size: 16px;">يمكنكم الآن الاستمتاع بجميع خدماتنا عبر تسجيل الدخول باستخدام عنوان بريدكم الإلكتروني: {{ email }}.</p>
+        <div style="margin-top: 20px;">
+            <a href="{% url 'Serrurier:login' %}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">تسجيل الدخول</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 16px;">إذا كانت لديكم أي أسئلة أو تحتاجون إلى مساعدة، فلا تترددوا في الاتصال بدعمنا.</p>
+        <p style="margin-top: 40px; color: #777; font-size: 14px;">فريق تاي كليس</p>
+    </div>
+</body>
+</html>

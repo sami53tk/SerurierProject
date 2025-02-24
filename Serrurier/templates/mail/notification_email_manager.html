@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bienvenue sur Notre Site</title>
+    </head>
+    <body style="font-family: Arial, sans-serif;">
+        <div
+            style="max-width: 600px; margin: auto; padding: 20px; text-align: center;">
+            <h1>Nouvelle demande de contact</h1>
+            <p>Une nouvelle demande de contact a été reçue:</p>
+            <p>Nom: {{ full_name }}</p>
+            <p>Email: {{ email }}</p>
+            <p>Téléphone: {{ phone_number }}</p>
+            <p>Message: {{ message }}</p>
+            <p>Date: {{ date }}</p>
+        </div>
+    </body>
+</html>

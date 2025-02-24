@@ -1,0 +1,75 @@
+{% extends "base_ab.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    {% if user.is_authenticated %}
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h3>اترك تعليقًا:</h3>
+            <form method="post" class="border p-4 rounded bg-light">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {% if field.name != "rating" %}
+                        {{ field|as_crispy_field }}
+                        {% else %}
+                            <label>التقييم:</label>
+                            <div>
+                                {% for choice in field.field.choices %}
+                                    <label class="star-label">
+                                        <input type="radio" name="{{ field.name }}" value="{{ choice.0 }}" {% if field.value == choice.0|stringformat:"s" %}checked{% endif %}>
+                                        <span class="{% if forloop.counter <= field.value %}fas{% else %}far{% endif %} fa-star text-warning"></span>
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">إرسال</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .star-label {
+        cursor: pointer;
+        font-size: 24px;
+        display: inline-block;
+        margin-right: 5px;
+    }
+    
+    .star-label input[type="radio"] {
+        display: none;
+    }
+
+    .star-label:hover .fas.fa-star,
+    .star-label:hover ~ .star-label .fas.fa-star,
+    .star-label input:checked ~ span.fas.fa-star {
+        color: gold !important;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let stars = document.querySelectorAll('.star-label input[type="radio"]');
+        stars.forEach(star => {
+            star.addEventListener('change', function() {
+                let value = this.value;
+                stars.forEach(s => {
+                    let siblingSpan = s.nextElementSibling;
+                    if (s.value <= value) {
+                        siblingSpan.classList.remove('far');
+                        siblingSpan.classList.add('fas');
+                    } else {
+                        siblingSpan.classList.remove('fas');
+                        siblingSpan.classList.add('far');
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

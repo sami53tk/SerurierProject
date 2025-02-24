@@ -1,0 +1,461 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+	<div class="header">
+		<div>
+			<h1>La Serrurerie Automobile</h1>
+			<p>
+				On n’est jamais à l'abri d'un problème lié à notre système de verrouillage automobile. Tout va bien, et puis un jour vous perdez vos clés, la serrure de la portière cède, ou le système électronique de sécurité ne répond plus... Que faire à ce moment-là ?
+								             Pas de panique ! Chez TAI Cles, nous venons à votre secours et mettons en œuvre notre expertise pour résoudre rapidement vos soucis de serrurerie automobile. Nos serruriers spécialisés interviennent avec efficacité pour vous dépanner.
+			</p>
+		</div>
+	</div>
+
+
+	<div class="content">
+
+	</div>
+
+
+	<section id="md-reassurance" class="pt-1 py-5">
+		<h2 class="text-center uniform-rounded">4 bonnes raisons de choisir TAI Cles</h2>
+		<div class="scroll scroll-bar px-1 px-md-0">
+			<div class=" container px-0 min-w-400">
+				<div class="row justify-content-lg-center">
+					<div class="col-sm-3 p-3 my-2 me-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/devis.png' %}" width="70" height="70" alt="Icon sans majoration soir et weekend">
+						<div class="separator-reassurance md-secondary"></div>
+						<span style="font-weight:bold;">Devis toujours gratuit</span>
+						<p class="mt-2">Aucun coût caché. Obtenez un devis clair avant toute intervention.</p>
+					</div>
+
+
+					<div class="col-sm-3 p-3 my-2 me-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/fourchette_prix.png' %}" width="70" height="70" alt="Icon fourchette de prix">
+						<div class="separator-reassurance md-dark-blue"></div>
+						<span class="bold">
+							Fourchette de prix connue avant commande
+						</span>
+						<p class="mt-2">Soyez informé du coût potentiel avant de confirmer votre commande.</p>
+					</div>
+
+					<!-- Card 3 -->
+					<div class="col-sm-3 p-3 my-2 me-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/satisfaction.png' %}" width="70" height="70" alt="Icon artisans qualifiés">
+						<div class="separator-reassurance md-primary"></div>
+						<span class="bold">
+							Clients toujours satisfait
+						</span>
+						<p class="mt-2">Notre priorité est la satisfaction de nos clients. Découvrez les témoignages de nos clients satisfaits.</p>
+					</div>
+
+					<!-- Card 4 -->
+					<div class="col-sm-3 p-3 my-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/reseau.png' %}" width="70" height="70" alt="Icon intervention 7j7 24h/24">
+						<div class="separator-reassurance md-right"></div>
+						<span class="bold">
+							Réseau de professionnels qualifiés
+						</span>
+						<p class="mt-2">Notre équipe est constituée de professionnels expérimentés et de confiance, sélectionnés avec soin.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+</div>
+</div>
+<div class="content">
+    <h2>Découvrez Notre Emplacement</h2>
+</div>
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<div class="content">
+    <p>
+        Nichée au cœur vibrant de la cité, notre enseigne se distingue par sa facilité d'accès, offrant ainsi à l'ensemble de notre clientèle une expérience sans égale. La carte interactive ci-dessous vous dévoile avec précision la localisation de notre boutique. Nous vous invitons chaleureusement à franchir nos portes afin d'explorer les solutions sur mesure que nous proposons en matière de serrurerie automobile, le tout dans une ambiance conviviale et professionnelle.
+    </p>
+</div>
+<h3 class="review-title" style="margin-left: 2rem;">Ce que nos clients disent de nous</h3>
+
+<div class="reviews-section">
+
+    {% for avis in avis_list %}
+        <div class="review-card">
+            <div class="review-header">
+                <span class="review-author">{{ avis.user.username }}</span>
+                <span class="review-date">{{ avis.date | date:"d M Y" }}</span>  <!-- Formatage de la date -->
+            </div>
+            <div class="review-body">
+                <p>{{ avis.commentaire }}</p>
+            </div>
+            <div class="review-rating">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= avis.rating %}
+                        <i class="fas fa-star"></i>
+                    {% else %}
+                        <i class="far fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+	
+</div>
+<form class="form-button" action="{% url 'Serrurier:soumettre_avis' %}">
+	<button class="btn btn-info" type="submit">Ajoutez un Avis aussi !</button>
+ </form>
+
+ <form class="form-button" action="{% url 'Serrurier:services' %}">
+	<button class="btn btn-info" id="fixedButton" type="submit">Accedez à Nos Services</button>
+ </form>
+
+
+<style>
+
+	/* Règles de base pour responsivité */
+html {
+	font-size: 100%; /* 16px par défaut */
+  }
+  
+  body {
+	line-height: 1.6; /* Espacement entre les lignes pour améliorer la lecture */
+  }
+  
+  .header h1 {
+	font-size: 1.75rem; /* Commencez avec une taille de base */
+  }
+  
+  .header p {
+	font-size: 1rem; /* Taille de la police pour le paragraphe */
+  }
+  
+  /* Responsive design avec des requêtes média */
+  @media (max-width: 768px) {
+	.header h1 {
+	  font-size: 1.5rem; /* Réduisez la taille de la police sur les petits écrans */
+	}
+	
+	.header p {
+	  font-size: 0.875rem; /* Réduisez la taille de la police du paragraphe */
+	}
+  }
+  
+  @media (max-width: 480px) {
+	.header h1 {
+	  font-size: 1.25rem; /* Encore plus petit pour les écrans très étroits */
+	}
+  
+	.header {
+	  padding: 20px; /* Ajouter un peu d'espace sur les côtés */
+	}
+  
+	.header p {
+	  font-size: 0.50rem; /* Diminution de la taille du paragraphe pour les très petits écrans */
+	}
+  }
+  
+  /* Pour les grands écrans, vous pouvez augmenter la taille de la police si nécessaire */
+  @media (min-width: 1200px) {
+	.header h1 {
+	  font-size: 2.5rem;
+	}
+	
+	.header p {
+	  font-size: 1.25rem;
+	}
+  }
+  
+
+
+	#fixedButton {
+		position: fixed;       /* Permet de fixer le bouton sur l'écran */
+		bottom: 20px;          /* Distance depuis le bas de l'écran */
+		right: 20px;           /* Distance depuis le côté droit de l'écran */
+		z-index: 999;          /* Assure que le bouton est au-dessus des autres éléments */
+		padding: 10px 20px;    /* Espacement intérieur pour le bouton */
+		background-color: #243846; /* Couleur de fond du bouton */
+		color: white;          /* Couleur du texte du bouton */
+		border: none;          /* Supprime la bordure */
+		border-radius: 5px;    /* Arrondit les coins */
+		cursor: pointer;       /* Change le curseur en main lors du survol */
+		transition: background-color 0.3s; /* Transition douce pour le survol */
+	}
+	
+	#fixedButton:hover {
+		background-color: #56d2f4; /* Change la couleur de fond lors du survol */
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	.body {
+		height: 300vh;
+	}
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 400px;
+		width: 100%;
+		background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("/static/images/banniere.png");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		color: aliceblue;
+
+	}
+
+	.header h1 {
+		font-size: 2.5em;
+		margin-bottom: 10px;
+	}
+	.header p {
+		font-size: 1em;
+		max-width: 800px; /* Limiter la largeur du texte pour une meilleure lisibilité */
+		margin: 0 auto; /* Centrer le paragraphe */
+	}
+	.content {
+		padding: 40px;
+	}
+	.separator-reassurance {
+		height: 8px;
+		width: 15%;
+		border-radius: 30px;
+		margin: 10px 0; /* Ajoute un peu d'espace au-dessus et en dessous du séparateur */
+	}
+	.md-secondary {
+		background-color: #fea652; /* Noir, mais vous pouvez choisir la couleur que vous préférez */
+
+	}
+	.md-dark-blue {
+		background-color: #243846
+	}
+	.md-primary {
+		background-color: #56d2f4
+	}
+	.md-right {
+		background-color: #cbced0
+	}
+
+	.md-reassurance-item {
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.05); /* Add this line */
+		transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effect */
+		margin: 0 10px 20px; /* Espacement autour de chaque card */
+		border-radius: 20px; /* Arrondissement des coins */
+		min-height: 250px;
+		max-width: 250px;
+
+	}
+
+	.md-reassurance-item:hover {
+		transform: translateY(-5px); /* Lifts the card up slightly when hovered for a more dynamic effect */
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.1); /* Slightly larger shadow on hover */
+	}
+	.md-reassurance-item p {
+		margin-top: 10px;
+		font-size: 1em;
+		color: #333; /* Changez cette couleur selon le thème de votre site */
+	}
+
+	.md-reassurance-section {
+		margin-top: 20px;  /* Ajoutez une marge au-dessus de la section */
+	}
+
+	.content-title {
+		text-align: center;  /* Centrez le titre */
+	}
+
+	/* Styles pour les cartes d'avis */
+	.card {
+		width: 100%; /* Utilisez toute la largeur disponible */
+		margin-bottom: 20px;
+		border: 1px solid #e0e0e0;
+		border-radius: 10px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		transition: transform 0.2s, box-shadow 0.2s;
+		background-color: #f9f9f9; /* Couleur de fond légère */
+	}
+	
+	.fa-star {
+		font-size: 1.2em; /* Augmentez la taille des étoiles */
+		color: #FFD700; /* Utilisez une couleur d'or riche */
+	}
+	.form-button {
+		background-color: #f4f4f4;
+		padding: 40px;
+		text-align: right;
+		padding-top:0 ;
+	  }
+
+	.reviews-section {
+		background-color: #f4f4f4;
+		padding: 40px;
+		text-align: center;
+	  }
+	  .review-title {
+		font-size: 2em;
+		margin-bottom: 30px;
+		font-weight: 300;
+		color: #333;
+	  }
+	  .review-card {
+		background-color: #fff;
+		border: 1px solid #e0e0e0;
+		border-radius: 10px;
+		padding: 20px;
+		margin: 10px auto;
+		width: 80%;
+		max-width: 600px;
+		transition: transform 0.2s, box-shadow 0.2s;
+	  }
+	  .review-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+	  }
+	  .review-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 10px;
+		margin-bottom: 15px;
+	  }
+	  .review-author {
+		font-weight: 500;
+		font-size: 1.1em;
+	  }
+	  .review-date {
+		font-size: 0.9em;
+		color: #888;
+	  }
+	  .review-body {
+		font-size: 1em;
+		line-height: 1.6;
+		color: #555;
+	  }
+	  .review-rating {
+		margin-top: 15px;
+	  }
+	  .fas, .far {
+		color: #FFD700;
+	  }
+	  .far {
+		opacity: 0.5;
+	  }
+	  .reviews-section {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 40px;
+		background-color: #f4f4f4;
+	  }
+	  .review-card {
+		width: calc(33.333% - 20px);
+		margin: 10px;
+		box-sizing: border-box;
+	  }
+		/* Responsive design */
+@media (max-width: 900px) {
+.review-card {
+  width: calc(50% - 20px);
+}
+}
+@media (max-width: 600px) {
+.review-card {
+  width: 100%;
+}
+}
+	
+
+/* Styles pour l'emplacement sur la carte */
+#map {
+width: 100%;
+height: 400px;
+margin-top: 20px;
+border-radius: 10px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS Responsiveness */
+@media only screen and (max-width: 1000px) {
+    /* Pour les écrans de tablettes et plus petits */
+
+    .header {
+        padding: auto; /* Ajustez le padding pour les petits écrans */
+    }
+
+    .raison-card, .avis-card {
+        /* Les cartes s'empilent verticalement sur les petits écrans */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .map-responsive {
+        margin-top: 20px; /* Ajoutez un peu d'espace au-dessus de la carte sur les petits écrans */
+    }
+
+    /* Ajustez la taille du texte pour les titres pour les petits écrans */
+    h1, h2, h3 {
+        font-size: 1.5em;
+    }
+
+    .btn {
+        margin: 10px 0; /* Ajoutez un espacement vertical pour les boutons quand ils s'empilent */
+    }
+
+    /* Vous pouvez également masquer certains éléments non essentiels sur les petits écrans si nécessaire */
+    /* .some-element { display: none; } */
+}
+
+@media only screen and (max-width: 480px) {
+    /* Pour les écrans de smartphones et plus petits */
+
+    .header {
+        padding: 50px 20px; /* Encore plus petit padding pour les très petits écrans */
+    }
+
+    /* Réduisez la taille de la police pour les petits éléments d'en-tête */
+    .header h1 {
+        font-size: 1.2em;
+    }
+
+    /* Adaptez la taille des boutons pour qu'ils soient plus manipulables sur les écrans tactiles */
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* Rendre les images responsives */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Rendre les iframes responsives, utile pour les éléments intégrés comme des vidéos ou des cartes */
+iframe {
+    width: 100%;
+}
+
+
+</style>
+
+<script>
+    var map = L.map('map').setView([33.562020, -7.560824], 13); // Initialiser la carte sur les coordonnées fournies
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+        maxZoom: 19
+    }).addTo(map);
+
+    L.marker([33.562020, -7.560824]).addTo(map) // Ajouter un marqueur sur les coordonnées fournies
+        .bindPopup('Votre position ou celle de votre entreprise.').openPopup();
+</script>
+{% endblock %}

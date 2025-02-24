@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+	{{ block.super }}
+	<style>
+		.service-section {
+			padding: 40px 0;
+		}
+
+		.service-card {
+			background-color: #f8f9fa;
+			border: none;
+			border-radius: 10px;
+			padding: 20px;
+			margin-bottom: 30px;
+			transition: transform 0.2s ease-in-out;
+		}
+
+		.service-card:hover {
+			transform: translateY(-10px);
+		}
+
+		.service-icon {
+			font-size: 2rem;
+			color: #011520;
+		}
+
+		.service-title {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.service-description {
+			color: #6c757d;
+		}
+		.cta-button {
+			background-color: #56d2f4;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 15px 2px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		.cta-button:hover {
+			background-color: #fff;
+			color: #011520;
+		}
+		.cta-section {
+			text-align: center;
+			padding: 40px 0;
+		}
+
+		.certification-section {
+			text-align: center;
+			padding: 40px 0;
+		}
+
+		.certification-text {
+			margin-bottom: 30px;
+			font-size: 1.1rem;
+			color: #6c757d;
+		}
+
+		.certification-image {
+			max-width: 80%;
+			margin-bottom: 10px;
+		}
+		
+		.service-section-title {
+			text-align: center;
+			font-size: 2rem;
+			margin-bottom: 20px;
+		}
+
+		.certification-image {
+			max-width: 80%;
+			max-height: 200px; /* Définissez la hauteur maximale selon vos besoins */
+			margin-bottom: 10px;
+		}
+	</style>
+
+{% endblock %}
+
+{% block content %}
+	<section class="container my-5 pt-5">
+		<h2 class="service-section-title">Nos Services</h2>
+		<div class="row">
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">Reproduction de clés</h5>
+						<p class="card-text">Reproduction de clés pour toutes les marques et modèles, incluant les clés traditionnelles et les clés à puce.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">Changement de codage</h5>
+						<p class="card-text">Réinitialisation du codage de vos clés en cas de perte ou pour empêcher les anciennes clés de fonctionner.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">Génération de clés perdues</h5>
+						<p class="card-text">Création de nouvelles clés et reprogrammation de votre système de sécurité en cas de perte de toutes vos clés.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">Diagnostic automobile</h5>
+						<p class="card-text">Analyse des problèmes électroniques ou mécaniques de votre véhicule avec des outils de diagnostic avancés.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">Réparation de serrures</h5>
+						<p class="card-text">Réparation ou remplacement des serrures de portières endommagées, incluant les mécanismes de verrouillage et les cylindres de serrure.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">Effacement des erreurs</h5>
+						<p class="card-text">Services liés à l'effacement des codes d'erreur liés à l'airbag, au FAP et à la réinitialisation de l'ECU.</p>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="cta-section">
+			<h2>Prêt à sécuriser votre véhicule ?</h2>
+			<p>Contactez-nous dès aujourd'hui pour un devis personnalisé !</p>
+			<button class="cta-button" onclick=location.href="{% url 'Serrurier:contact' %}">Demander un devis</button>
+		</div>
+        <div class="certification-section">
+            <h2>Nos Certifications et Notre Équipe</h2>
+            <p class="certification-text">
+                Nous sommes fiers de détenir des certifications reconnues dans notre domaine, attestant de notre expertise et de notre engagement à fournir un service de qualité supérieure. Notre équipe est composée de professionnels qualifiés et expérimentés, dédiés à vous offrir les meilleurs services possibles.
+            </p>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static 'images/certif1.jpg' %}" alt="Certification 1" class="img-fluid certification-image">
+                    <p>Certification Apecs</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{% static 'images/certif2.jpg' %}" alt="Certification 2" class="img-fluid certification-image">
+                    <p>Certification Codificar</p>
+                </div>
+            </div>
+        </div>
+        
+    
+	</section>
+{% endblock %}

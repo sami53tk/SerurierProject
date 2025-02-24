@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+  {{ block.super }}
+  <style>
+    .contact-section {
+      padding: 40px 0;
+      background-color: #f8f9fa;
+    }
+
+    .contact-card {
+        background-color: #fff;
+        border-color: #011520;
+        border-width: 2px;
+        border-style: solid; 
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        margin-right: 30px;
+        transition: transform 0.2s ease-in-out;
+      }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #011520;
+    }
+
+    .contact-text {
+      margin-bottom: 10px;
+      color: #6c757d;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+    }
+
+    .form-control:focus {
+      border-color: #56d2f4;
+      outline: 0;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      background-color: #56d2f4;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      transition-duration: 0.4s;
+    }
+
+    .btn-primary:hover {
+      background-color: #fff;
+      color: #011520;
+      border: 1px solid #56d2f4;
+    }
+
+    .contact-form-button {
+      background-color: #56d2f4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition-duration: 0.4s;
+    }
+
+    .contact-form-button:hover {
+      background-color: #fff;
+      color: #011520;
+      border: 1px solid #56d2f4;
+    }
+
+    .info-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #011520;
+        margin-bottom: 20px;
+      }
+  
+      .info-item {
+        margin-bottom: 10px;
+      }
+  
+      .info-icon {
+        color: #56d2f4;
+        margin-right: 10px;
+      }
+    
+    /* Rest of your previous CSS for the form */
+  </style>
+{% endblock %}
+
+{% block content %}
+  <section class="container my-5 pt-5">
+    <div class="row">
+      <!-- Contact Information -->
+      <div class="col-lg-6">
+        <div class="contact-card">
+          <h2 class="contact-title">Our Contact Information</h2>
+          <p class="contact-text"><strong>Email:</strong> taidiag@hotmail.com</p>
+          <p class="contact-text"><strong>Support:</strong> taimedamine@gmail.com</p>
+          <p class="contact-text"><strong>Phone 1:</strong> +33 7 51 96 84 57</p>
+          <p class="contact-text"><strong>Phone 2:</strong> +212 6 61 52 52 27</p>
+          <p class="contact-text"><strong>Phone 3:</strong> +212 6 73 67 67 27</p>
+        </div>
+      </div>
+      <!-- Contact Form -->
+      <div class="col-lg-6">
+        <div class="contact-card">
+          <h2 class="contact-title">Leave Us a Message</h2>
+          <form method="post" class="contact-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+              <label for="{{ form.full_name.id_for_label }}" class="form-label">Full Name</label>
+              {{ form.full_name }}
+            </div>
+            
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}" class="form-label">Email Address</label>
+              {{ form.email }}
+            </div>
+            
+            <div class="form-group">
+              <label for="{{ form.phone_number.id_for_label }}" class="form-label">Phone Number</label>
+              {{ form.phone_number }}
+            </div>
+            
+            <div class="form-group">
+              <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+              {{ form.message }}
+            </div>
+            
+            <button type="submit" class="contact-form-button">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,338 @@
+{% extends "base_ab.html" %}
+{% load static %}
+
+{% block content %}
+	<div class="header">
+		<div>
+			<h1>الصناعة المفتوحة</h1>
+			<p>
+				لا يمكننا أن نكون آمنين دائمًا من مشكلة تتعلق بنظام القفل في سيارتك. كل شيء على ما يرام، ثم في يوم ما تفقد مفاتيحك، أو تتعطل قفل الباب، أو لا يستجيب نظام الأمان الإلكتروني بالمزيد... ماذا يجب عليك فعله في هذا الوقت؟
+				لا تقلق! في TAI Cles، نحن هنا لمساعدتك ونستخدم خبرتنا لحل مشكلاتك في نظام القفل السياري بسرعة. يقوم أخصائيو الأقفال لدينا بالتدخل بفعالية لإصلاح مشاكلك.
+			</p>
+		</div>
+	</div>
+
+	<div class="content"></div>
+
+	<section id="md-reassurance" class="pt-1 py-5">
+		<h2 class="text-center uniform-rounded">4 أسباب جيدة لاختيار TAI Cles</h2>
+		<div class="scroll scroll-bar px-1 px-md-0">
+			<div class=" container px-0 min-w-400">
+				<div class="row justify-content-lg-center">
+					<div class="col-sm-3 p-3 my-2 me-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/devis.png' %}" width="70" height="70" alt="أيقونة الاقتباس مجاني دائمًا">
+						<div class="separator-reassurance md-secondary"></div>
+						<span style="font-weight:bold;">احصل دائمًا على اقتباس مجاني</span>
+						<p class="mt-2">لا توجد تكاليف خفية. احصل على اقتباس واضح قبل أي تدخل.</p>
+					</div>
+
+					<div class="col-sm-3 p-3 my-2 me-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/fourchette_prix.png' %}" width="70" height="70" alt="أيقونة نطاق الأسعار معروفة قبل الطلب">
+						<div class="separator-reassurance md-dark-blue"></div>
+						<span class="bold">
+							نطاق الأسعار معروف قبل الطلب
+						</span>
+						<p class="mt-2">تعرّف على التكلفة المحتملة قبل تأكيد طلبك.</p>
+					</div>
+
+					<!-- Card 3 -->
+					<div class="col-sm-3 p-3 my-2 me-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/satisfaction.png' %}" width="70" height="70" alt="أيقونة عملاء راضون دائمًا">
+						<div class="separator-reassurance md-primary"></div>
+						<span class="bold">
+							عملاء راضون دائمًا
+						</span>
+						<p class="mt-2">أولويتنا هي رضاء عملائنا. اكتشف شهادات عملائنا الراضين.</p>
+					</div>
+
+					<!-- Card 4 -->
+					<div class="col-sm-3 p-3 my-2 rounded-big d-flex flex-column effect-style-dark-shadow md-reassurance-item">
+						<img class="" src="{% static 'images/reseau.png' %}" width="70" height="70" alt="أيقونة التدخل على مدار 24 ساعة طوال أيام الأسبوع">
+						<div class="separator-reassurance md-right"></div>
+						<span class="bold">
+							شبكة من المحترفين المؤهلين
+						</span>
+						<p class="mt-2">فريقنا مكون من محترفين ذوي خبرة وثقة، تم اختيارهم بعناية.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>
+</div>
+<div class="content">
+    <h2>اكتشف موقعنا</h2>
+</div>
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<div class="content">
+    <p>
+        تقع محلنا في قلب المدينة النابضة بالحياة، مما يوفر تجربة فريدة لجميع زبائننا. تكشف الخريطة التفاعلية أدناه عن موقع محلنا بدقة. ندعوك بحرارة لزيارتنا واستكشاف الحلول المخصصة التي نقدمها في مجال الأقفال السيارية، كل ذلك في جو ودود واحترافي.
+    </p>
+</div>
+<h3 class="review-title">ما يقوله عملاؤنا عنا</h3>
+
+<div class="reviews-section">
+
+    {% for avis in avis_list %}
+        <div class="review-card">
+            <div class="review-header">
+                <span class="review-author">{{ avis.user.username }}</span>
+                <span class="review-date">{{ avis.date | date:"d M Y" }}</span>  <!-- تنسيق التاريخ -->
+            </div>
+            <div class="review-body">
+                <p>{{ avis.commentaire }}</p>
+            </div>
+            <div class="review-rating">
+                {% for i in "12345" %}
+                    {% if forloop.counter <= avis.rating %}
+                        <i class="fas fa-star"></i>
+                    {% else %}
+                        <i class="far fa-star"></i>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+	
+</div>
+<form class="form-button" action="{% url 'Serrurier:soumettre_avis' %}">
+	<button class="btn btn-info" type="submit">أضف تقييمًا أيضًا!</button>
+ </form>
+
+ <form class="form-button" action="{% url 'Serrurier:services' %}">
+	<button class="btn btn-info" id="fixedButton" type="submit">الوصول إلى خدماتنا</button>
+ </form>
+
+<style>
+
+
+
+	#fixedButton {
+		position: fixed;       /* Permet de fixer le bouton sur l'écran */
+		bottom: 20px;          /* Distance depuis le bas de l'écran */
+		right: 20px;           /* Distance depuis le côté droit de l'écran */
+		z-index: 999;          /* Assure que le bouton est au-dessus des autres éléments */
+		padding: 10px 20px;    /* Espacement intérieur pour le bouton */
+		background-color: #243846; /* Couleur de fond du bouton */
+		color: white;          /* Couleur du texte du bouton */
+		border: none;          /* Supprime la bordure */
+		border-radius: 5px;    /* Arrondit les coins */
+		cursor: pointer;       /* Change le curseur en main lors du survol */
+		transition: background-color 0.3s; /* Transition douce pour le survol */
+	}
+	
+	#fixedButton:hover {
+		background-color: #56d2f4; /* Change la couleur de fond lors du survol */
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	.body {
+		height: 300vh;
+	}
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 400px;
+		width: 100%;
+		background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url("/static/images/banniere.png");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		color: aliceblue;
+
+	}
+
+	.header h1 {
+		font-size: 2.5em;
+		margin-bottom: 10px;
+	}
+	.header p {
+		font-size: 1.2em;
+		max-width: 800px; /* Limiter la largeur du texte pour une meilleure lisibilité */
+		margin: 0 auto; /* Centrer le paragraphe */
+	}
+	.content {
+		padding: 40px;
+	}
+	.separator-reassurance {
+		height: 8px;
+		width: 15%;
+		border-radius: 30px;
+		margin: 10px 0; /* Ajoute un peu d'espace au-dessus et en dessous du séparateur */
+	}
+	.md-secondary {
+		background-color: #fea652; /* Noir, mais vous pouvez choisir la couleur que vous préférez */
+
+	}
+	.md-dark-blue {
+		background-color: #243846
+	}
+	.md-primary {
+		background-color: #56d2f4
+	}
+	.md-right {
+		background-color: #cbced0
+	}
+
+	.md-reassurance-item {
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.05); /* Add this line */
+		transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effect */
+		margin: 0 10px 20px; /* Espacement autour de chaque card */
+		border-radius: 20px; /* Arrondissement des coins */
+		min-height: 250px;
+		max-width: 250px;
+
+	}
+
+	.md-reassurance-item:hover {
+		transform: translateY(-5px); /* Lifts the card up slightly when hovered for a more dynamic effect */
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.1); /* Slightly larger shadow on hover */
+	}
+	.md-reassurance-item p {
+		margin-top: 10px;
+		font-size: 1em;
+		color: #333; /* Changez cette couleur selon le thème de votre site */
+	}
+
+	.md-reassurance-section {
+		margin-top: 20px;  /* Ajoutez une marge au-dessus de la section */
+	}
+
+	.content-title {
+		text-align: center;  /* Centrez le titre */
+	}
+
+	/* Styles pour les cartes d'avis */
+	.card {
+		width: 100%; /* Utilisez toute la largeur disponible */
+		margin-bottom: 20px;
+		border: 1px solid #e0e0e0;
+		border-radius: 10px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		transition: transform 0.2s, box-shadow 0.2s;
+		background-color: #f9f9f9; /* Couleur de fond légère */
+	}
+	
+	.fa-star {
+		font-size: 1.2em; /* Augmentez la taille des étoiles */
+		color: #FFD700; /* Utilisez une couleur d'or riche */
+	}
+	.form-button {
+		background-color: #f4f4f4;
+		padding: 40px;
+		text-align: right;
+		padding-top:0 ;
+	  }
+
+	.reviews-section {
+		background-color: #f4f4f4;
+		padding: 40px;
+		text-align: center;
+	  }
+	  .review-title {
+		font-size: 2em;
+		margin-bottom: 30px;
+		font-weight: 300;
+		color: #333;
+	  }
+	  .review-card {
+		background-color: #fff;
+		border: 1px solid #e0e0e0;
+		border-radius: 10px;
+		padding: 20px;
+		margin: 10px auto;
+		width: 80%;
+		max-width: 600px;
+		transition: transform 0.2s, box-shadow 0.2s;
+	  }
+	  .review-card:hover {
+		transform: translateY(-5px);
+		box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+	  }
+	  .review-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 10px;
+		margin-bottom: 15px;
+	  }
+	  .review-author {
+		font-weight: 500;
+		font-size: 1.1em;
+	  }
+	  .review-date {
+		font-size: 0.9em;
+		color: #888;
+	  }
+	  .review-body {
+		font-size: 1em;
+		line-height: 1.6;
+		color: #555;
+	  }
+	  .review-rating {
+		margin-top: 15px;
+	  }
+	  .fas, .far {
+		color: #FFD700;
+	  }
+	  .far {
+		opacity: 0.5;
+	  }
+	  .reviews-section {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 40px;
+		background-color: #f4f4f4;
+	  }
+	  .review-card {
+		width: calc(33.333% - 20px);
+		margin: 10px;
+		box-sizing: border-box;
+	  }
+		/* Responsive design */
+@media (max-width: 900px) {
+.review-card {
+  width: calc(50% - 20px);
+}
+}
+@media (max-width: 600px) {
+.review-card {
+  width: 100%;
+}
+}
+	
+
+/* Styles pour l'emplacement sur la carte */
+#map {
+width: 100%;
+height: 400px;
+margin-top: 20px;
+border-radius: 10px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+</style>
+
+<script>
+    var map = L.map('map').setView([33.562020, -7.560824], 13); // Initialiser la carte sur les coordonnées fournies
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+        maxZoom: 19
+    }).addTo(map);
+
+    L.marker([33.562020, -7.560824]).addTo(map) // Ajouter un marqueur sur les coordonnées fournies
+        .bindPopup('Votre position ou celle de votre entreprise.').openPopup();
+</script>
+{% endblock %}

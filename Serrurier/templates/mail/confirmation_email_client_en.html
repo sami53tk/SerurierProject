@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Website</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+    <div style="max-width: 600px; margin: auto; padding: 20px; text-align: center;">
+        <h1>Confirmation of Message Receipt</h1>
+        <p>Hello {{ full_name }},</p>
+        <p>We have received your message dated {{ date }}. Our team will process your request and respond to you as soon as possible.</p>
+        <div style="margin-top: 20px;">
+            <a href="{% url 'Serrurier:login' %}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Log In</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 16px;">If you have any questions or need assistance, please feel free to contact our support.</p>
+        <p style="margin-top: 40px; color: #777; font-size: 14px;">The Tai Cles Team</p>
+    </div>
+</body>
+</html>

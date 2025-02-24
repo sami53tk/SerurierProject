@@ -1,0 +1,174 @@
+{% extends 'base_ab.html' %}
+{% load static %}
+{% block css %}
+	{{ block.super }}
+	<style>
+		.service-section {
+			padding: 40px 0;
+		}
+
+		.service-card {
+			background-color: #f8f9fa;
+			border: none;
+			border-radius: 10px;
+			padding: 20px;
+			margin-bottom: 30px;
+			transition: transform 0.2s ease-in-out;
+		}
+
+		.service-card:hover {
+			transform: translateY(-10px);
+		}
+
+		.service-icon {
+			font-size: 2rem;
+			color: #011520;
+		}
+
+		.service-title {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.service-description {
+			color: #6c757d;
+		}
+		.cta-button {
+			background-color: #56d2f4;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 15px 2px;
+			transition-duration: 0.4s;
+			cursor: pointer;
+		}
+
+		.cta-button:hover {
+			background-color: #fff;
+			color: #011520;
+		}
+		.cta-section {
+			text-align: center;
+			padding: 40px 0;
+		}
+
+		.certification-section {
+			text-align: center;
+			padding: 40px 0;
+		}
+
+		.certification-text {
+			margin-bottom: 30px;
+			font-size: 1.1rem;
+			color: #6c757d;
+		}
+
+		.certification-image {
+			max-width: 80%;
+			margin-bottom: 10px;
+		}
+		
+		.service-section-title {
+			text-align: center;
+			font-size: 2rem;
+			margin-bottom: 20px;
+		}
+
+		.certification-image {
+			max-width: 80%;
+			max-height: 200px; /* Set the maximum height as needed */
+			margin-bottom: 10px;
+		}
+	</style>
+
+{% endblock %}
+
+{% block content %}
+<section class="container my-5 pt-5">
+    <h2 class="service-section-title">خدماتنا</h2>
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">نسخ المفاتيح</h5>
+                    <p class="card-text">نسخ المفاتيح لجميع العلامات التجارية والطرازات، بما في ذلك المفاتيح التقليدية والمفاتيح الذكية.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">تغيير برمجة المفاتيح</h5>
+                    <p class="card-text">إعادة ضبط برمجة مفاتيحك في حالة الفقدان أو لمنع عمل المفاتيح القديمة.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">إنشاء مفتاح جديد</h5>
+                    <p class="card-text">إنشاء مفاتيح جديدة وإعادة برمجة نظام الأمان الخاص بك في حالة فقدان جميع مفاتيحك.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">تشخيص المركبات</h5>
+                    <p class="card-text">تحليل المشاكل الإلكترونية أو الميكانيكية في مركبتك باستخدام أدوات التشخيص المتقدمة.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">إصلاح الأقفال</h5>
+                    <p class="card-text">إصلاح أو استبدال الأقفال التالفة، بما في ذلك آليات القفل وأسطوانات القفل.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">مسح الأخطاء</h5>
+                    <p class="card-text">خدمات تتعلق بمسح رموز الأخطاء المتعلقة بوسائد الهواء ومرشح الجسيمات الصغيرة وإعادة ضبط وحدة التحكم الإلكترونية.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cta-section">
+        <h2>هل أنتم مستعدون لتأمين مركبتكم؟</h2>
+        <p>تواصلوا معنا اليوم للحصول على عرض سعر شخصي!</p>
+        <button class="cta-button" onclick=location.href="{% url 'Serrurier:contact' %}">طلب عرض سعر</button>
+    </div>
+    <div class="certification-section">
+        <h2>شهاداتنا وفريقنا</h2>
+        <p class="certification-text">
+            نحن نفخر بحمل شهادات معترف بها في مجالنا، تؤكد على خبرتنا والتزامنا بتقديم خدمة عالية الجودة. فريقنا يتألف من محترفين مؤهلين وذوي خبرة ملتزمين بتقديم أفضل الخدمات لكم.
+        </p>
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{% static 'images/certif1.jpg' %}" alt="شهادة 1" class="img-fluid certification-image">
+                <p>شهادة Apecs</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/certif2.jpg' %}" alt="شهادة 2" class="img-fluid certification-image">
+                <p>شهادة Codificar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
