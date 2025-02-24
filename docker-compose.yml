@@ -3,9 +3,14 @@ version: '3'
 services:
   web:
     build: .
+    container_name: serurier_django
     ports:
       - "8000:8000"
     volumes:
+      # Monte le dossier local dans /app pour coder "en live"
       - .:/app
     environment:
-      - DEBUG=True
+      # Quelques variables Django (optionnel)
+      - DEBUG=1
+      - SECRET_KEY=changeme
+    restart: unless-stopped
